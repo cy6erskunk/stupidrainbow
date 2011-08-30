@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css.css"></link>
+        <script type="text/javascript" src="http://yandex.st/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" src="stupidrainbow.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('.first').stupidrainbow();
+                $('.second').stupidrainbow({
+                  pos: 1,
+                  sign: 1,
+                  debug: true
+                });
+                
+                $('.third').stupidrainbow({
+                  arr: [ 0, 0, 0],
+                  pos: 2,
+                  sign: 1
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="first"></div>
+        <div class="second"></div>
+        <div class="third"></div>
+    </body>
+</html>
