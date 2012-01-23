@@ -1,2 +1,3 @@
 This is absolutely useless jQuery plugin to change background color
 continuously in the rainbow order.
+It also has even more useless blinking mode, when color components are simply incremented (blue 0->255, then green 0->255, then red 0->255)
