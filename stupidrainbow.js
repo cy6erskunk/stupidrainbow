@@ -32,11 +32,26 @@
                 var elem = elem,
                     arr = options.arr,
                     sign = options.sign,
-                    pos = options.pos;
+                    pos = options.pos,
+                    bg,
+                    hexBg;
                 (function () {
                     if (options.crazyBlink) {
-                        // crazy color blinking
-                        var hexBg = (parseInt(parseComponents(($(elem).css('background-color') || 'rgb( 0, 0, 0)').match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1)).join(''), 16) + options.crazyBlinkIncrement).toString(16);
+                        bg = $(elem).css('background-color') || 'rgb( 0, 0, 0)';
+                        // IE
+                        if (bg.charAt(0) === '#') {
+                            bg = bg.slice(1);
+                            if (bg.lenth === 3) {
+                                for ( var i = 0; i < 3; i++) {
+                                    hexBg = bg.charAt(i) + bg.charAt(i);
+                                }
+                            } else {
+                                hexBg = bg;
+                            }
+                            hexBg = (parseInt(hexBg, 16) + options.crazyBlinkIncrement).toString(16);
+                        } else {
+                            hexBg = (parseInt(parseComponents(bg.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1)).join(''), 16) + options.crazyBlinkIncrement).toString(16);
+                        }
                         if (parseInt(hexBg, 16) > 0xffffff) {
                             hexBg = (parseInt(hexBg, 16) - 0xffffff).toString(16);
                         }

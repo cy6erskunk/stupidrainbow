@@ -1,28 +1,28 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css.css"></link>
-        <script type="text/javascript" src="http://yandex.st/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://yandex.st/jquery/1.7.1/jquery.js"></script>
         <script type="text/javascript" src="stupidrainbow.min.js"></script>
-        <script type="text/javascript">
-            $(function () {
-                $('.first').stupidrainbow();
-                $('.second').stupidrainbow({
-                  pos: 1,
-                  sign: 1,
-                  debug: true
-                });
-                
-                $('.third').stupidrainbow({
-                  arr: [ 0, 0, 0],
-                  pos: 2,
-                  sign: 1
-                });
-            });
-        </script>
+        <script type="text/javascript" src="js.js"></script>
     </head>
     <body>
-        <div class="first"></div>
+        <div class="first" id="first"></div>
         <div class="second"></div>
         <div class="third"></div>
+        <div class="nyan_type_vertical"></div>
+<!-- Yandex.Metrika counter -->
+<div style="display:none;"><script type="text/javascript">
+(function(w, c) {
+(w[c] = w[c] || []).push(function() {
+try {
+w.yaCounter9907495 = new Ya.Metrika({id:9907495, enableAll: true});
+}
+catch(e) { }
+});
+})(window, "yandex_metrika_callbacks");
+</script></div>
+<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+<noscript><div><img src="//mc.yandex.ru/watch/9907495" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
     </body>
 </html>
