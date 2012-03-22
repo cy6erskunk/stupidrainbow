@@ -13,6 +13,7 @@
                   arr: [0, 0, 0],
                   sign: 1,
                   pos: 0,
+                  timeout: 50,
                   crazyBlink : false,
                   crazyBlinkIncrement: 10,
                   debug: false
@@ -33,6 +34,7 @@
                     arr = options.arr,
                     sign = options.sign,
                     pos = options.pos,
+                    timeout = options.timeout,
                     bg,
                     hexBg;
                 (function () {
@@ -60,7 +62,7 @@
                             hexBg = '0' + hexBg;
                         }
                         $(elem).css('background-color', '#' + hexBg);
-                        setTimeout( arguments.callee, 50);
+                        setTimeout( arguments.callee, timeout);
                     } else {
                             // check if we have reached 255 or 0 while increasing/decreasing component
                             // and call itself again to check next component before modifying
@@ -73,7 +75,7 @@
                                 arr[pos] += sign;
                                 $(elem).css('background-color', 'rgb(' + arr.join(',') + ')');
 
-                                setTimeout( arguments.callee, 50);
+                                setTimeout( arguments.callee, timeout);
                             }
                     }
                     // display some debug information
