@@ -1,3 +1,4 @@
+/*global setTimeout, jQuery*/
 (function ($) {
     /**
      * @param {Object} options - options to suppress defaults
@@ -17,12 +18,12 @@
                   crazyBlink : false,
                   crazyBlinkIncrement: 10,
                   debug: false
-                }, 
+                },
                 options),
             parseComponents = function (c) {
                 for (var i = 0; i < c.length; i++ ) {
                     c[i] = parseInt(c[i], 10).toString(16);
-                    if (c[i].length == 1) {
+                    if (c[i].length === 1) {
                         c[i] = '0' + c[i];
                     }
                 }
@@ -37,6 +38,7 @@
                     timeout = options.timeout,
                     bg,
                     hexBg;
+
                 (function () {
                     if (options.crazyBlink) {
                         bg = $(elem).css('background-color') || 'rgb( 0, 0, 0)';
@@ -57,33 +59,33 @@
                         if (parseInt(hexBg, 16) > 0xffffff) {
                             hexBg = (parseInt(hexBg, 16) - 0xffffff).toString(16);
                         }
-                        // add leading zeroes 
+                        // add leading zeroes
                         while (hexBg.length < 6) {
                             hexBg = '0' + hexBg;
                         }
                         $(elem).css('background-color', '#' + hexBg);
-                        setTimeout( arguments.callee, timeout);
+                        setTimeout(arguments.callee, timeout);
                     } else {
                             // check if we have reached 255 or 0 while increasing/decreasing component
                             // and call itself again to check next component before modifying
                             if ( sign === 1 && arr[pos] === 255 || sign === -1 && arr[pos] === 0 ) {
                                 sign *= -1;
                                 pos = (pos + 2) % 3;
-                                setTimeout( arguments.callee, 0);
+                                setTimeout(arguments.callee, 0);
                             }
                             else {
                                 arr[pos] += sign;
                                 $(elem).css('background-color', 'rgb(' + arr.join(',') + ')');
 
-                                setTimeout( arguments.callee, timeout);
+                                setTimeout(arguments.callee, timeout);
                             }
                     }
                     // display some debug information
                     if(options.debug) {
                         $(elem).text('rgb(' + arr.join(',') + '), ' + pos + ', ' + sign);
                     }
-                })();
-            })(this, options);
+                }());
+            }(this, options));
         return this;
     };
-})(jQuery);
+}(jQuery));
