@@ -15,7 +15,7 @@
 
 
   $.fn.stupidrainbow = function(options) {
-    var parseComponent, parseComponents;
+    var parseComponents;
     options = $.extend({
       arr: [0, 0, 0],
       sign: 1,
@@ -25,25 +25,22 @@
       crazyBlinkIncrement: 10,
       debug: false
     }, options);
-    parseComponent = function(c) {
-      var component;
-      component = parseInt(c, 10).toString(16);
-      if (component.length === 1) {
-        return component = '0' + component;
-      }
-    };
     parseComponents = function(c) {
-      var component, _i, _len, _results;
+      var component, _c, _i, _len, _results;
       _results = [];
       for (_i = 0, _len = c.length; _i < _len; _i++) {
         component = c[_i];
-        _results.push(parseComponent(component));
+        _c = parseInt(c, 10).toString(16);
+        if (_c.length === 1) {
+          _results.push('0' + _c);
+        } else {
+          _results.push(_c);
+        }
       }
       return _results;
     };
-    (function(_elem, options) {
-      var arr, elem, pos, sign, timeout;
-      elem = _elem;
+    (function(elem, options) {
+      var arr, pos, sign, timeout;
       arr = options.arr;
       sign = options.sign;
       pos = options.pos;
@@ -51,7 +48,7 @@
       return (function() {
         var bg, hexBg, i;
         if (options.crazyBlink) {
-          bg = $(elem).css('background-color') || 'rgb( 0, 0, 0)';
+          bg = elem.css('background-color') || 'rgb( 0, 0, 0)';
           if (bg.charAt(0) === '#') {
             bg = bg.slice(1);
             hexBg = (function() {
@@ -76,7 +73,7 @@
           while (hexBg.length < 6) {
             hexBg = '0' + hexBg;
           }
-          $(elem).css('background-color', '#' + hexBg);
+          elem.css('background-color', '#' + hexBg);
           setTimeout(arguments.callee, timeout);
         } else {
           if (sign === 1 && arr[pos] === 255 || sign === -1 && arr[pos] === 0) {
@@ -85,12 +82,12 @@
             setTimeout(arguments.callee, 0);
           } else {
             arr[pos] += sign;
-            $(elem).css('background-color', 'rgb(' + arr.join(',') + ')');
+            elem.css('background-color', 'rgb(' + arr.join(',') + ')');
             setTimeout(arguments.callee, timeout);
           }
         }
         if (options.debug) {
-          return $(elem).text('rgb(' + arr.join(',') + '), ' + pos + ', ' + sign);
+          return elem.text('rgb(' + arr.join(',') + '), ' + pos + ', ' + sign);
         }
       })();
     })(this, options);
