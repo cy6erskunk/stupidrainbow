@@ -54,7 +54,7 @@
                             }
                             hexBg = (parseInt(hexBg, 16) + options.crazyBlinkIncrement).toString(16);
                         } else {
-                            hexBg = (parseInt(parseComponents(bg.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/).slice(1)).join(''), 16) + options.crazyBlinkIncrement).toString(16);
+                            hexBg = (parseInt(parseComponents(bg.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(,\s*(\d+))?\)$/).slice(1)).join(''), 16) + options.crazyBlinkIncrement).toString(16);
                         }
                         if (parseInt(hexBg, 16) > 0xffffff) {
                             hexBg = (parseInt(hexBg, 16) - 0xffffff).toString(16);
